@@ -52,7 +52,9 @@ int print_unsigned(va_list types, char buffer[], int flags, int width);
 int print_octal(va_list types, char buffer[], int flags, int width);
 int print_hexadecimal(va_list types, char buffer[], int flags, int width);
 int print_hexa_upper(va_list types, char buffer[], int flags, int width);
-int print_hexa(va_list types, char map_to[], char buffer[], int flags, char flag_ch, int width);
+
+int print_hexa(va_list types, char map_to[],
+char buffer[], int flags, char flag_ch, int width);
 
 /* Function to print non printable characters */
 int print_non_printable(va_list types, char buffer[], int flags, int width);
@@ -72,13 +74,16 @@ int print_rot13string(va_list types, char buffer[], int flags, int width);
 
 /* width handler */
 int handle_write_char(char c, char buffer[], int flags, int width);
-int write_number(int is_positive, int ind, char buffer[], int flags, int width);
-int write_unsigned(int is_negative, int ind, char buffer[], int flags, int width);
+int write_number(int is_positive, int ind, char buffer[]
+, int flags, int width);
+
+int write_unsigned(int is_negative, int ind,
+char buffer[], int flags, int width);
 
 /****************** UTILS ******************/
 int len(char *);
 int is_printable(char);
-int append_hexa_code(char , char[], int);
+int append_hexa_code(char, char[], int);
 int is_digit(char);
 
 #endif /* HOL_H */
