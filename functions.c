@@ -35,19 +35,19 @@ int print_string(va_list types, char buffer[], int flags, int width)
 		buffer[length] = str[length];
 
 	buffer[length] = '\0';
-	
+
 	if (width > length)
 	{
 		buffer[BUFF_SIZE - 1] = '\0';
 		for (i = 0; i < width - length; i++)
 			buffer[BUFF_SIZE - i - 2] = ' ';
-		
+
 		if (flags & F_MINUS)
 			return (write(1, &buffer[0], length) +
-				write(1, &buffer[BUFF_SIZE - i - 1], width - length));
+					write(1, &buffer[BUFF_SIZE - i - 1], width - length));
 		else
 			return (write(1, &buffer[BUFF_SIZE - i - 1], width - length) +
-				write(1, &buffer[0], length));
+					write(1, &buffer[0], length));
 	}
 
 	/* HANDLE SPECIAL CASES WHEN PRINTING STR*/
@@ -66,7 +66,7 @@ int print_string(va_list types, char buffer[], int flags, int width)
 int print_percent(va_list types, char buffer[], int flags, int width)
 {
 	UNUSED(types);
-	UNUSED(buffer); 
+	UNUSED(buffer);
 	UNUSED(flags);
 	UNUSED(width);
 	return (write(1, "%%", 1));
@@ -74,9 +74,9 @@ int print_percent(va_list types, char buffer[], int flags, int width)
 
 int print_int(va_list types, char buffer[], int flags, int width)
 {
-	
+
 	int i = BUFF_SIZE - 2;
-	
+
 	int is_negative = 0;
 	int n = va_arg(types, int);
 	unsigned int num;
@@ -101,7 +101,7 @@ int print_int(va_list types, char buffer[], int flags, int width)
 	}
 
 	i++;
-	
+
 	return write_number(is_negative, i, buffer, flags, width);
 }
 
@@ -116,13 +116,14 @@ int print_int(va_list types, char buffer[], int flags, int width)
 int print_binary(va_list types, char buffer[], int flags, int width)
 {
 
-	UNUSED(buffer); 
-	UNUSED(flags);
-	UNUSED(width);
+
 
 	unsigned int n, m, i, sum;
 	unsigned int a[32];
 	int count;
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
 
 	n = va_arg(types, unsigned int);
 	m = 2147483648; /* (2 ^ 31) */
@@ -176,7 +177,6 @@ int print_unsigned(va_list types, char buffer[], int flags, int width)
 	/* return (write(1, &buffer[i], BUFF_SIZE - i) - 1);*/
 }
 
-
 /************************* PRINT UNSIGNED NUMBER IN OCTAL  *************************/
 /**
  * print_octal - Prints an unsigned number in octal notation
@@ -186,10 +186,10 @@ int print_unsigned(va_list types, char buffer[], int flags, int width)
  */
 int print_octal(va_list types, char buffer[], int flags, int width)
 {
-	UNUSED(width);
-	int i;
-	i =  BUFF_SIZE - 2;
+
+	int i = BUFF_SIZE - 2;
 	unsigned int num = va_arg(types, unsigned int);
+	UNUSED(width);
 
 	if (num == 0)
 		return write(1, "0", 1);
@@ -210,7 +210,6 @@ int print_octal(va_list types, char buffer[], int flags, int width)
 	return (write(1, &buffer[i], BUFF_SIZE - i) - 1);
 }
 
-
 /************************* PRINT UNSIGNED NUMBER IN HEXADECIMAL *************************/
 /**
  * print_hexadecimal - Prints an unsigned number in hexadecimal notation
@@ -223,7 +222,6 @@ int print_hexadecimal(va_list types, char buffer[], int flags, int width)
 {
 	return print_hexa(types, "0123456789abcdef", buffer, flags, 'x', width);
 }
-
 
 /************************* PRINT UNSIGNED NUMBER IN UPPER HEXADECIMAL *************************/
 /**
@@ -238,7 +236,6 @@ int print_hexa_upper(va_list types, char buffer[], int flags, int width)
 	return print_hexa(types, "0123456789ABCDEF", buffer, flags, 'X', width);
 }
 
-
 /************************* PRINT HEXX NUM IN LOWER OR UPPER *************************/
 /**
  * print_hexa - Prints a hexadecimal number in lower or upper
@@ -250,8 +247,10 @@ int print_hexa_upper(va_list types, char buffer[], int flags, int width)
  */
 int print_hexa(va_list types, char map_to[], char buffer[], int flags, char flag_ch, int width)
 {
+	
 	int i = BUFF_SIZE - 2;
 	unsigned int num = va_arg(types, unsigned int);
+	UNUSED(width);
 
 	if (num == 0)
 		return write(1, "0", 1);
@@ -285,11 +284,12 @@ int print_hexa(va_list types, char map_to[], char buffer[], int flags, char flag
  */
 int print_pointer(va_list types, char buffer[], int flags, int width)
 {
+	
 	int i = BUFF_SIZE - 2;
 	unsigned long num_addrs;
 	char map_to[] = "0123456789abcdef";
 	void *addrs = va_arg(types, void *);
-
+	UNUSED(width);
 	if (addrs == NULL)
 		return write(1, "(nil)", 5);
 
@@ -325,8 +325,11 @@ int print_pointer(va_list types, char buffer[], int flags, int width)
  */
 int print_non_printable(va_list types, char buffer[], int flags, int width)
 {
+
 	int i = 0, offset = 0;
 	char *str = va_arg(types, char *);
+	UNUSED(flags);
+	UNUSED(width);
 
 	if (str == NULL)
 		return write(1, "(null)", 6);
@@ -357,8 +360,12 @@ int print_non_printable(va_list types, char buffer[], int flags, int width)
 
 int print_reverse(va_list types, char buffer[], int flags, int width)
 {
+
 	char *str;
 	int i, count = 0;
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
 
 	str = va_arg(types, char *);
 
@@ -367,14 +374,14 @@ int print_reverse(va_list types, char buffer[], int flags, int width)
 		str = ")Null(";
 	}
 	for (i = 0; str[i]; i++)
-	;
-	for(i = i - 1; i >= 0; i--)
+		;
+	for (i = i - 1; i >= 0; i--)
 	{
 		char z = str[i];
 		write(1, &z, 1);
 		count++;
 	}
-	return(count);
+	return (count);
 }
 /************************* PRINT A STRING IN ROT13 *************************/
 /**
@@ -384,37 +391,40 @@ int print_reverse(va_list types, char buffer[], int flags, int width)
  * 
  * Return: Numbers of chars printed
  */
-int print_rot13string(va_list types, char buffer [], int flags, int width)
+int print_rot13string(va_list types, char buffer[], int flags, int width)
 {
-    char x;
-    char *str;
-    unsigned int i, j;
-    int count = 0;
-    char in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-    str = va_arg(types, char *);
-    if (str == NULL)
-        str = "(AHYY)";
-    for (i = 0; str[i]; i++)
-    {
-        for (j = 0; in[j]; j++)
-        {
-            if (in[j] == str[i])
-            {
-              x = out[j];
-                write(1, &x, 1);
-                count++;
-                break;
-            }
-        }
-        if (!in[j])
-        {
-          x = str[i];
-            write(1, &x, 1);
-            count++;
-        }
-    }
-    return (count);
+	char x;
+	char *str;
+	unsigned int i, j;
+	int count = 0;
+	char in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
+	str = va_arg(types, char *);
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
+	if (str == NULL)
+		str = "(AHYY)";
+	for (i = 0; str[i]; i++)
+	{
+		for (j = 0; in[j]; j++)
+		{
+			if (in[j] == str[i])
+			{
+				x = out[j];
+				write(1, &x, 1);
+				count++;
+				break;
+			}
+		}
+		if (!in[j])
+		{
+			x = str[i];
+			write(1, &x, 1);
+			count++;
+		}
+	}
+	return (count);
 }
