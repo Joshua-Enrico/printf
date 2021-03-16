@@ -37,12 +37,12 @@ int handle_print(char fmt, va_list list, char buffer[], int flags, int width)
 		}
 
 	/* UNKNOWN */
-	if (fmt_types[i].fmt == '\0')
-	{
-		write(1, "%%", 1);
-		write(1, &fmt, 1);
-		return (2);
-	}
+	/*if (fmt_types[i].fmt == '\0')*/
+	/*{*/
+		/*write(1, "%%", 1);*/
+		/*write(1, &fmt, 1);*/
+		/*return (2);*/
+	/*}*/
 
 	return (printed_chars);
 }
