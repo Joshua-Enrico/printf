@@ -7,10 +7,10 @@
  */
 int _printf(const char *format, ...)
 {
-    int i, printed_chars = -1;
-    int flags, width;
-    va_list list;
-    char buffer[BUFF_SIZE];
+	int i, printed_chars = -1;
+	int flags, width;
+	va_list list;
+	char buffer[BUFF_SIZE];
 
 	va_start(list, format);
 
