@@ -7,7 +7,7 @@
  */
 int _printf(const char *format, ...)
 {
-    int i, printed = 0, printed_chars = 0;
+    int i, printed = 0, start_i, printed_chars = 0;
     int flags, width;
     va_list list;
     char buffer[BUFF_SIZE];
@@ -26,12 +26,13 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
+            start_i = i;
 			flags = get_flags(format, &i);
 			width = get_width(format, &i);
 			/* precision = handle_precision(); */
 			/* size = handle_size(); */
 			/* Last one handles type and print */
-			printed = handle_print(format, ++i, list, buffer, flags, width);
+			printed = handle_print(format, &i, start_i, list, buffer, flags, width);
             if (printed == -1)
                 return (-1);
             printed_chars += printed;
