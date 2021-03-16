@@ -96,7 +96,7 @@
 * contains functions to get width for spcifics spcifiers.
 
 **writee_handlers.c**
-* contains write functions. 
+* contains write functions.
 
 ## Directory Descriptions
 **tests**
