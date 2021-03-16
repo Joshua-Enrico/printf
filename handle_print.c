@@ -6,9 +6,9 @@
  * @flags: Calculates active flags
  * Return: 1 or 2;
  */
-int handle_print(char fmt, va_list list, char buffer[], int flags, int width)
+int handle_print(const char *fmt, int ind, va_list list, char buffer[], int flags, int width)
 {
-    int i, printed_chars = -1;
+    int i, unknow_len = 0, printed_chars = -1;
     fmt_t fmt_types[] = {
         {'c', print_char},
         {'s', print_string},
@@ -28,7 +28,7 @@ int handle_print(char fmt, va_list list, char buffer[], int flags, int width)
     };
 
     for (i = 0; fmt_types[i].fmt != '\0'; i++)
-        if (fmt == fmt_types[i].fmt)
+        if (fmt[ind] == fmt_types[i].fmt)
         {
             printed_chars = fmt_types[i].fn(list, buffer, flags, width);
             break;
@@ -37,12 +37,15 @@ int handle_print(char fmt, va_list list, char buffer[], int flags, int width)
     /* WRITE UNKNOWN SPECIFIER */
     if (fmt_types[i].fmt == '\0')
     {
-        if (fmt == '\0')
+        if (fmt[ind] == '\0')
             return (-1);
 
-        write(1, "%%", 1);
-        write(1, &fmt, 1);
-        return 2;
+        unknow_len += write(1, "%%", 1);
+        if (fmt[ind - 1] == ' ')
+            unknow_len += write(1, " ", 1);
+        unknow_len += write(1, &fmt[ind], 1);
+
+        return (unknow_len);
     }
 
 	return (printed_chars);
