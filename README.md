@@ -67,32 +67,32 @@
 - [x] Handle the custom conversion specifier ```R``` that prints the rot13'ed string.
 - [ ] All above options should work well together.
 ## File Descriptions
-**_printf.c** 
+**_printf.c**
 * contains the  fucntion ```_printf```, which uses the prototype ```int _printf(const char *format, ...);```. The format string is composed of zero or more directives. See ```man 3 printf``` for more detail. **_printf** will return the number of characters printed (excluding the null byte used to end output to strings) and will write output to **stdout**, the standard output stream.
 
 **_putchar.c**
 * contains the function ```_putchar```, which writes a character to stdout.
 
-**holberton.h**  
+**holberton.h**
 *contains all function prototypes used for ```_printf```.
 
-**man_3_printf** 
+**man_3_printf**
 * manual page for the custom ```_printf``` function.
 
-**functions.c** 
+**functions.c**
 * contains all function of each specifier used for ```_printf```.
 
-**handle_print.c** 
+**handle_print.c**
 * contains arguments types used for ```_printf```.
 
 **get_flags.c**
 * contains all function for each flag use for ```_printf```.
 
-**utils.c** 
+**utils.c**
 * contains some necessary functionalities for ```_printf```.
 
 ## Directory Descriptions
-**tests** 
+**tests**
 * contains the test cases for ```_printf```.
 
 ## Authors
