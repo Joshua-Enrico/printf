@@ -5,7 +5,6 @@
  * @format: format
  * Return: Printed chars.
  */
-
 int _printf(const char *format, ...)
 {
     int i, printed_chars = 0;
