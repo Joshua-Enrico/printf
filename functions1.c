@@ -27,7 +27,7 @@ int print_unsigned(va_list types, char buffer[], int flags, int width)
 
 	i++;
 
-	return (write_unsigned(0, i, buffer, flags, width));
+	return (unsigned int write_unsigned(0, i, buffer, flags, width));
 	/* return (write(1, &buffer[i], BUFF_SIZE - i) - 1);*/
 }
 
