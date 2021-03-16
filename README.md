@@ -79,8 +79,9 @@
 **man_3_printf**
 * manual page for the custom ```_printf``` function.
 
-**functions.c**
+**functions.c** **functions1.c** **functions2.c**
 * contains all function of each specifier used for ```_printf```.
+* all function have its own description inside the file.
 
 **handle_print.c**
 * contains arguments types used for ```_printf```.
