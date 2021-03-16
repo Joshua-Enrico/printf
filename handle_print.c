@@ -38,6 +38,10 @@ int handle_print(char fmt, va_list list, char buffer[], int flags, int width)
     if (fmt_types[i].fmt == '\0')
     {
         write(1, "%%", 1);
+
+        if (fmt == '\0')
+            return (-1);
+
         write(1, &fmt, 1);
         return 2;
     }
