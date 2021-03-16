@@ -49,9 +49,8 @@ int handle_write_char(char c, char buffer[], int flags, int width)
  */
 int write_number(int is_negative, int ind, char buffer[], int flags, int width)
 {
-	int length = BUFF_SIZE - ind - 1, i = 0;
-	char padd = ' ';
-	char extra_ch = 0;
+	int length = BUFF_SIZE - ind - 1;
+	char padd = ' ', extra_ch = 0;
 
 	if ((flags & F_ZERO) && !(flags & F_MINUS))
 		padd = '0';
@@ -61,39 +60,59 @@ int write_number(int is_negative, int ind, char buffer[], int flags, int width)
 		extra_ch = '+', length++;
 	else if (flags & F_SPACE)
 		extra_ch = ' ', length++;
-	if (width > length)
-	{
-		for (i = 1; i < width - length + 1; i++)
-			buffer[i] = padd;
-		buffer[i] = '\0';
-		if (flags & F_MINUS && padd == ' ')/* Asign extra char to left of buffer */
-		{
-			if (extra_ch)
-				buffer[--ind] = extra_ch;
-			return (write(1, &buffer[ind], length) +
-					write(1, &buffer[1], i - 1));
-		}
-		else if (!(flags & F_MINUS) && padd == ' ')/* extra char to left of buffer */
-		{
-			if (extra_ch)
-				buffer[--ind] = extra_ch;
-			return (write(1, &buffer[1], i - 1) +
-					write(1, &buffer[ind], length));
-		}
-		else if (!(flags & F_MINUS) && padd == '0')
-		{
-			if (extra_ch)
-				buffer[0] = extra_ch;
-			return (write(1, &buffer[0], i) +
-					write(1, &buffer[ind], length - 1));
-		}
-	}
-	if (extra_ch)
-	buffer[--ind] = extra_ch;
-	return (write(1, &buffer[ind], length));
+
+	return (write_num(ind, buffer, flags, width, length, padd, extra_ch));
 }
 
-int write_unsigned(int is_negative, int ind,
+/**
+ * write_num - Write a number using a bufffer
+ * @ind: Index at which the number starts on the buffer
+ * @bff: Buffer
+ * @flgs: Flags
+ * @w: width
+ * @l: Number length
+ * @pd: Pading char
+ * @ex_c: Extra char
+ *
+ * Return: Number of printed chars
+ */
+int write_num(int ind, char bff[], int flgs, int w, int l, char pd, char ex_c)
+{
+	int i;
+
+	if (w > l)
+	{
+		for (i = 1; i < w - l + 1; i++)
+			bff[i] = pd;
+		bff[i] = '\0';
+		if (flgs & F_MINUS && pd == ' ')/* Asign extra char to left of bfffer */
+		{
+			if (ex_c)
+				bff[--ind] = ex_c;
+			return (write(1, &bff[ind], l) +
+					write(1, &bff[1], i - 1));
+		}
+		else if (!(flgs & F_MINUS) && pd == ' ')/* extra char to left of bfffer */
+		{
+			if (ex_c)
+				bff[--ind] = ex_c;
+			return (write(1, &bff[1], i - 1) +
+				write(1, &bff[ind], l));
+		}
+		else if (!(flgs & F_MINUS) && pd == '0')
+		{
+			if (ex_c)
+				bff[0] = ex_c;
+			return (write(1, &bff[0], i) +
+				write(1, &bff[ind], l - 1));
+		}
+	}
+	if (ex_c)
+		bff[--ind] = ex_c;
+	return (write(1, &bff[ind], l));
+}
+
+int write_unsgnd(int is_negative, int ind,
 char buffer[], int flags, int width)
 {
 	/* The number is stored at the bufer's right and starts at position i */

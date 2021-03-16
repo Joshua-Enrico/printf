@@ -77,8 +77,9 @@ int print_rot13string(va_list types, char buffer[], int flags, int width);
 int handle_write_char(char c, char buffer[], int flags, int width);
 int write_number(int is_positive, int ind, char buffer[]
 , int flags, int width);
+int write_num(int ind, char bff[], int flgs, int w, int l, char pd, char ex_c);
 
-int write_unsigned(int is_negative, int ind,
+int write_unsgnd(int is_negative, int ind,
 char buffer[], int flags, int width);
 
 /****************** UTILS ******************/

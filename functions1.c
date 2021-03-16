@@ -27,8 +27,7 @@ int print_unsigned(va_list types, char buffer[], int flags, int width)
 
 	i++;
 
-	return (write_unsigned(0, i, buffer, flags, width));
-	/* return (write(1, &buffer[i], BUFF_SIZE - i) - 1);*/
+	return (write_unsgnd(0, i, buffer, flags, width));
 }
 
 /************* PRINT UNSIGNED NUMBER IN OCTAL  ****************/
