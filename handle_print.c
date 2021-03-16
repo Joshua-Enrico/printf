@@ -10,7 +10,7 @@
  */
 int handle_print(char fmt, va_list list, char buffer[], int flags, int width)
 {
-	int i, printed_chars = 0;
+	int i, printed_chars = -1;
 	fmt_t fmt_types[] = {
 		{'c', print_char},
 		{'s', print_string},
@@ -36,8 +36,8 @@ int handle_print(char fmt, va_list list, char buffer[], int flags, int width)
 			break;
 		}
 
-    if (fmt_types[i].fmt == '\0')
-        return (-1);
+    /*if (fmt_types[i].fmt == '\0')*/
+        /*return (-1);*/
 
 	return (printed_chars);
 }
