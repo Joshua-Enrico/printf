@@ -5,7 +5,7 @@
 
 /**
  * Command to run test:
- * gcc ./tests/8_print_reverse.c _printf.c handle_print.c   functions.c functions1.c functions2.c utils.c
+ * gcc ./tests/8_print_reverse.c _printf.c handle_print.c write_handlers.c get_width.c functions.c  utils.c
  */
 
 
@@ -21,6 +21,6 @@ int main(void)
     len2 = printf("Let's try to printf a simple sentence.\n");
     
     _printf("Unknown:[%r]\n");
-    printf("Unknown:[%r]\n");
+    
     
 }

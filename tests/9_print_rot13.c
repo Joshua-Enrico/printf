@@ -5,7 +5,7 @@
 
 /**
  * Command to run test:
- * gcc ./tests/9_print_rot13.c _printf.c handle_print.c functions.c functions1.c functions2.c utils.c get_flags.c
+ * gcc ./tests/9_print_rot13.c _printf.c handle_print.c write_handlers.c get_width.c functions.c  utils.c get_flags.c
  */
 
 int main(void)
