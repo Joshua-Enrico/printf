@@ -129,9 +129,6 @@ int print_int(va_list types, char buffer[], int flags, int width)
  */
 int print_binary(va_list types, char buffer[], int flags, int width)
 {
-
-
-
 	unsigned int n, m, i, sum;
 	unsigned int a[32];
 	int count;
