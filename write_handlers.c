@@ -1,5 +1,14 @@
 #include "holberton.h"
 
+/************************* WRITE HANDLE *************************/
+/**
+ * handle_write_char - Prints a string
+ * @c: char types.
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width.
+ * Return: Number of chars printed
+ */
 int handle_write_char(char c, char buffer[], int flags, int width)
 { /* char is stored at left and paddind at buffer's right */
 	int i = 0;
@@ -28,6 +37,16 @@ int handle_write_char(char c, char buffer[], int flags, int width)
 	return (write(1, &buffer[0], 1));
 }
 
+/************************* WRITE NUMBER *************************/
+/**
+ * write_number - Prints a string
+ * @is_negative: Lista of arguments
+ * @ind: char types.
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width.
+ * Return: Number of chars printed
+ */
 int write_number(int is_negative, int ind, char buffer[], int flags, int width)
 {
 	/* The number is stored at the bufer's right and starts at position i */
@@ -77,7 +96,6 @@ int write_number(int is_negative, int ind, char buffer[], int flags, int width)
 					write(1, &buffer[ind], length - 1));
 		}
 	}
-
 	if (extra_ch)
 		buffer[--ind] = extra_ch;
 
