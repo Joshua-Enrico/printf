@@ -36,7 +36,7 @@ int handle_print(char fmt, va_list list, char buffer[], int flags, int width)
 			break;
 		}
 
-    if (fmt_types[i].fmt != '\0')
+    if (fmt_types[i].fmt == '\0')
         return (-1);
 
 	return (printed_chars);
