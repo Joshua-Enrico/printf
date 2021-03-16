@@ -65,13 +65,18 @@ int print_string(va_list types, char buffer[], int flags, int width)
  */
 int print_percent(va_list types, char buffer[], int flags, int width)
 {
-	UNUSED(types), UNUSED(buffer), UNUSED(flags), UNUSED(width);
+	UNUSED(types);
+	UNUSED(buffer); 
+	UNUSED(flags);
+	UNUSED(width);
 	return (write(1, "%%", 1));
 }
 
 int print_int(va_list types, char buffer[], int flags, int width)
 {
-	int length = 0, i = BUFF_SIZE - 2;
+	
+	int i = BUFF_SIZE - 2;
+	
 	int is_negative = 0;
 	int n = va_arg(types, int);
 	unsigned int num;
@@ -110,6 +115,11 @@ int print_int(va_list types, char buffer[], int flags, int width)
  */
 int print_binary(va_list types, char buffer[], int flags, int width)
 {
+
+	UNUSED(buffer); 
+	UNUSED(flags);
+	UNUSED(width);
+
 	unsigned int n, m, i, sum;
 	unsigned int a[32];
 	int count;
@@ -162,8 +172,8 @@ int print_unsigned(va_list types, char buffer[], int flags, int width)
 
 	i++;
 
-	return write_unsigned(0, i, buffer, flags, width);
-	// return (write(1, &buffer[i], BUFF_SIZE - i) - 1);
+	return (write_unsigned(0, i, buffer, flags, width));
+	/* return (write(1, &buffer[i], BUFF_SIZE - i) - 1);*/
 }
 
 
@@ -176,7 +186,9 @@ int print_unsigned(va_list types, char buffer[], int flags, int width)
  */
 int print_octal(va_list types, char buffer[], int flags, int width)
 {
-	int i = BUFF_SIZE - 2;
+	UNUSED(width);
+	int i;
+	i =  BUFF_SIZE - 2;
 	unsigned int num = va_arg(types, unsigned int);
 
 	if (num == 0)

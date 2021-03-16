@@ -5,7 +5,7 @@
 
 /**
  * Command to run test:
- * gcc ./tests/8_print_reverse.c _printf.c handle_print.c write_handlers.c get_width.c functions.c  utils.c
+ * gcc ./tests/8_print_reverse.c _printf.c handle_print.c write_handlers.c get_width.c functions.c  utils.c get_flags.c
  */
 
 
