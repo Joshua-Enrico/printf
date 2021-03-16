@@ -86,7 +86,8 @@ int write_unsigned(int is_negative, int ind, char buffer[], int flags, int width
 	/* The number is stored at the bufer's right and starts at position i */
 	int length = BUFF_SIZE - ind - 1, i = 0;
 	char padd  = ' ';
-	// printf("\nunsg: %d %s len:%d\n", ind, &buffer[ind], length);
+	
+	UNUSED(is_negative);
 
 	if ((flags & F_ZERO) && !(flags & F_MINUS))
 		padd = '0';

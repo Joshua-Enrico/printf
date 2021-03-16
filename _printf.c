@@ -25,8 +25,8 @@ int _printf(const char *format, ...)
         {
             flags = get_flags(format, &i);
             width = get_width(format, &i);
-            // precision = handle_precision();
-            // size = handle_size();
+            /* precision = handle_precision(); */
+            /* size = handle_size(); */
             /* Last one handles type and print */
             printed_chars += handle_print(format[++i], list, buffer, flags, width);
         }
