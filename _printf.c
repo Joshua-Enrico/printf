@@ -7,7 +7,7 @@
  */
 int _printf(const char *format, ...)
 {
-    int i, printed_chars = 0;
+    int i, printed_chars = -1;
     int flags, width;
     va_list list;
     char buffer[BUFF_SIZE];
