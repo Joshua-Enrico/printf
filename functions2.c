@@ -41,7 +41,7 @@ int print_pointer(va_list types, char buffer[], int flags, int width)
 
 	i++;
 
-	return (write(1, &buffer[i], BUFF_SIZE - i) - 1);
+	return (write(1, &buffer[i], BUFF_SIZE - i - 1));
 }
 
 /************************* PRINT NON PRINTABLE *************************/
