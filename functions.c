@@ -27,9 +27,12 @@ int print_char(va_list types, char buffer[], int flags, int width)
  */
 int print_string(va_list types, char buffer[], int flags, int width)
 {
-	UNUSED(buffer);
-	int length = 0, i = 0;
+	int length = 0;
 	char *str = va_arg(types, char *);
+
+	UNUSED(buffer);
+	UNUSED(flags);
+	UNUSED(width);
 
 	if (str == NULL)
 		str = "(null)";
