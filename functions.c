@@ -40,7 +40,7 @@ int print_string(va_list types, char buffer[], int flags, int width)
 	while (str[length] != '\0')
 		length++;
 
-	return (write(1, str, 1));
+	return (write(1, str, length));
 
 	/* HANDLE SPECIAL CASES WHEN PRINTING STR*/
 	/* Pending ...... */
