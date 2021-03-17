@@ -3,9 +3,9 @@
 
 /**
  * Command to run test:
- * gcc ./tests/0_printf_strings.c _printf.c handle_print.c functions.c get_flags.c get_width.c write_handlers.c utils.c 
+ * gcc ./tests/0_printf_strings.c *.c
  */
-/*gcc ./tests/0_printf_strings.c _printf.c handle_print.c functions.c functions1.c functions2.c utils.c get_flags.c*/
+
 int main(void)
 {
 	int len1, len2;

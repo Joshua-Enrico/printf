@@ -62,7 +62,7 @@
 - [ ] Handle length modifiers ```l``` and ```h``` for non-custom conversion specifiers.
 - [ ] Handle the field width for non-custom conversion specifiers.
 - [ ] Handle the precision for non-custom conversion specifiers.
-- [x] Handle the ```0``` flag character for non-custom conversion specifiers.
+- [ ] Handle the ```0``` flag character for non-custom conversion specifiers.
 - [x] Handle the custom conversion specifier ```r``` that prints the reversed string.
 - [x] Handle the custom conversion specifier ```R``` that prints the rot13'ed string.
 - [ ] All above options should work well together.
@@ -79,8 +79,9 @@
 **man_3_printf**
 * manual page for the custom ```_printf``` function.
 
-**functions.c**
+**functions.c** **functions1.c** **functions2.c**
 * contains all function of each specifier used for ```_printf```.
+* all function have its own description inside the file.
 
 **handle_print.c**
 * contains arguments types used for ```_printf```.
@@ -90,6 +91,12 @@
 
 **utils.c**
 * contains some necessary functionalities for ```_printf```.
+
+**ger_width.c**
+* contains functions to get width for spcifics spcifiers.
+
+**writee_handlers.c**
+* contains write functions.
 
 ## Directory Descriptions
 **tests**
