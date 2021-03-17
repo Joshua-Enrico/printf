@@ -9,7 +9,7 @@
  * @width: get width.
  * Return: 1 or 2;
  */
-int handle_print(const char *fmt, int ind,
+int handle_print(const char *fmt, int *ind,
 va_list list, char buffer[], int flags, int width)
 {
 	int i, unknow_len = 0, printed_chars = -1;
@@ -32,7 +32,7 @@ va_list list, char buffer[], int flags, int width)
 	};
 
 	for (i = 0; fmt_types[i].fmt != '\0'; i++)
-		if (fmt[ind] == fmt_types[i].fmt)
+		if (fmt[*ind] == fmt_types[i].fmt)
 		{
 			printed_chars = fmt_types[i].fn(list, buffer, flags, width);
 			break;
@@ -41,13 +41,19 @@ va_list list, char buffer[], int flags, int width)
 	/* WRITE UNKNOWN SPECIFIER */
 	if (fmt_types[i].fmt == '\0')
 	{
-		if (fmt[ind] == '\0')
+		if (fmt[*ind] == '\0')
 			return (-1);
 
 		unknow_len += write(1, "%%", 1);
-		if (fmt[ind - 1] == ' ')
+		if (fmt[*ind - 1] == ' ')
 			unknow_len += write(1, " ", 1);
-		unknow_len += write(1, &fmt[ind], 1);
+		else if (width)
+		{
+			while(fmt[--(*ind)] != ' ' && fmt[*ind] != '%');
+			--(*ind);
+			return (1);
+		}
+		unknow_len += write(1, &fmt[*ind], 1);
 
 		return (unknow_len);
 	}
