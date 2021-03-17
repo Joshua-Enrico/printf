@@ -27,37 +27,21 @@ int print_char(va_list types, char buffer[], int flags, int width)
  */
 int print_string(va_list types, char buffer[], int flags, int width)
 {
+	UNUSED(buffer);
 	int length = 0, i = 0;
-
 	char *str = va_arg(types, char *);
 
 	if (str == NULL)
 		str = "(null)";
 
-	for (; str[length] != '\0'; length++)
-		buffer[length] = str[length];
+	while (str[length] != '\0')
+		length++;
 
-	buffer[length] = '\0';
-
-	if (width > length)
-	{
-		buffer[BUFF_SIZE - 1] = '\0';
-		for (i = 0; i < width - length; i++)
-			buffer[BUFF_SIZE - i - 2] = ' ';
-
-		if (flags & F_MINUS)
-			return (write(1, &buffer[0], length) +
-					write(1, &buffer[BUFF_SIZE - i - 1], width - length));
-		else
-			return (write(1, &buffer[BUFF_SIZE - i - 1], width - length) +
-					write(1, &buffer[0], length));
-	}
+	return (write(1, str, 1));
 
 	/* HANDLE SPECIAL CASES WHEN PRINTING STR*/
 	/* Pending ...... */
-
-	return (write(1, &buffer[0], length));
-}
+	}
 /************************* PRINT PERCENT SIGN *************************/
 /**
  * print_percent - Prints a percent sign
