@@ -30,31 +30,27 @@ va_list list, char buffer[], int flags, int width)
 		{'R', print_rot13string},
 		{'\0', NULL}
 	};
-
 	for (i = 0; fmt_types[i].fmt != '\0'; i++)
 		if (fmt[*ind] == fmt_types[i].fmt)
 		{
 			printed_chars = fmt_types[i].fn(list, buffer, flags, width);
 			break;
 		}
-
-	/* WRITE UNKNOWN SPECIFIER */
-	if (fmt_types[i].fmt == '\0')
+	if (fmt_types[i].fmt == '\0')/* WRITE UNKNOWN SPECIFIER */
 	{
 		if (fmt[*ind] == '\0')
 			return (-1);
-
 		unknow_len += write(1, "%%", 1);
 		if (fmt[*ind - 1] == ' ')
 			unknow_len += write(1, " ", 1);
 		else if (width)
 		{
-			while(fmt[--(*ind)] != ' ' && fmt[*ind] != '%');
+			while (fmt[--(*ind)] != ' ' && fmt[*ind] != '%')
+			;
 			--(*ind);
 			return (1);
 		}
 		unknow_len += write(1, &fmt[*ind], 1);
-
 		return (unknow_len);
 	}
 	return (printed_chars);

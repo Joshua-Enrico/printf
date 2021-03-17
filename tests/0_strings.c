@@ -26,4 +26,14 @@ int main(void)
 	len2 = printf("Let's try to printf a simple sentence.\n");
 	len = _printf("Percent:[%%]\n");
 	len2 = printf("Percent:[%%]\n");
+
+
+	printf("%%");
+	_printf("Hello %%\n");
+	printf("%.4%");	 /* { dg-warning "format" "bogus %%" } */
+	_printf("%%.3%%");
+	_printf("%-%\n");	 /* { dg-warning "format" "bogus %%" } */
+	_printf("%-%\n"); /* { dg-warning "format" "bogus %%" } */
+	_printf("%5%\n"); /* { dg-warning "format" "bogus %%" } */
+	_printf("%h%\n"); /* { dg-warning "format" "bogus %%" } */
 }
