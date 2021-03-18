@@ -101,7 +101,6 @@ int print_int(va_list types, char buffer[], int flags, int width)
 		buffer[i--] = '0';
 
 	buffer[BUFF_SIZE - 1] = '\0';
-
 	num = (unsigned int)n;
 
 	if (n < 0)

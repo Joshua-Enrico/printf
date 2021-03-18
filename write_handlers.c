@@ -85,26 +85,26 @@ int write_num(int ind, char bff[], int flgs, int w, int l, char pd, char ex_c)
 		for (i = 1; i < w - l + 1; i++)
 			bff[i] = pd;
 		bff[i] = '\0';
-		if (flgs & F_MINUS && pd == ' ')/* Asign extra char to left of bfffer */
+		if (flgs & F_MINUS && pd == ' ')/* Asign extra char to left of buffer */
 		{
 			if (ex_c)
 				bff[--ind] = ex_c;
 			return (write(1, &bff[ind], l) +
 					write(1, &bff[1], i - 1));
 		}
-		else if (!(flgs & F_MINUS) && pd == ' ')/* extra char to left of bfffer */
+		else if (!(flgs & F_MINUS) && pd == ' ')/* extra char to left of buffer */
 		{
 			if (ex_c)
 				bff[--ind] = ex_c;
 			return (write(1, &bff[1], i - 1) +
 				write(1, &bff[ind], l));
 		}
-		else if (!(flgs & F_MINUS) && pd == '0')
+		else if (!(flgs & F_MINUS) && pd == '0')/* extra char to left of padding */
 		{
 			if (ex_c)
-				bff[padd_start--] = ex_c;
+				bff[--padd_start] = ex_c;
 			return (write(1, &bff[padd_start], i - padd_start) +
-				write(1, &bff[ind], l - (padd_start - 1)));
+				write(1, &bff[ind], l - (1 - padd_start)));
 		}
 	}
 	if (ex_c)
