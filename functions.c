@@ -82,7 +82,7 @@ int print_int(va_list types, char buffer[], int flags, int width)
 	unsigned int num;
 
 	if (n == 0)
-		return (write(1, "0", 1));
+		buffer[i--] = '0';
 
 	buffer[BUFF_SIZE - 1] = '\0';
 
