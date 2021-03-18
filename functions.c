@@ -27,7 +27,7 @@ int print_char(va_list types, char buffer[], int flags, int width)
  */
 int print_string(va_list types, char buffer[], int flags, int width)
 {
-	int length = 0;
+	int length = 0, i;
 	char *str = va_arg(types, char *);
 
 	UNUSED(buffer);
@@ -39,6 +39,24 @@ int print_string(va_list types, char buffer[], int flags, int width)
 
 	while (str[length] != '\0')
 		length++;
+
+	if (width > length)
+	{
+		if (flags & F_MINUS)
+		{
+			write(1, &str[0], length);
+			for (i = width - length; i > 0; i--)
+				write(1, " ", 1);
+			return (width);
+		}
+		else
+		{
+			for (i = width - length; i > 0; i--)
+				write(1, " ", 1);
+			write(1, &str[0], length);
+			return (width);
+		}
+	}
 
 	return (write(1, str, length));
 
