@@ -15,7 +15,7 @@ int print_unsigned(va_list types, char buffer[], int flags, int width)
 	unsigned int num = va_arg(types, unsigned int);
 
 	if (num == 0)
-		return (write(1, "0", 1));
+		buffer[i--] = '0';
 
 	buffer[BUFF_SIZE - 1] = '\0';
 
@@ -48,7 +48,7 @@ int print_octal(va_list types, char buffer[], int flags, int width)
 	UNUSED(width);
 
 	if (num == 0)
-		return (write(1, "0", 1));
+		buffer[i--] = '0';
 
 	buffer[BUFF_SIZE - 1] = '\0';
 
@@ -63,7 +63,8 @@ int print_octal(va_list types, char buffer[], int flags, int width)
 
 	i++;
 
-	return (write(1, &buffer[i], BUFF_SIZE - i - 1));
+	/* return (write(1, &buffer[i], BUFF_SIZE - i - 1)); */
+	return (write_unsgnd(0, i, buffer, flags, width));
 }
 
 /************** PRINT UNSIGNED NUMBER IN HEXADECIMAL **************/
@@ -114,7 +115,7 @@ int print_hexa(va_list types, char map_to[], char buffer[]
 	UNUSED(width);
 
 	if (num == 0)
-		return (write(1, "0", 1));
+		buffer[i--] = '0';
 
 	buffer[BUFF_SIZE - 1] = '\0';
 
@@ -132,5 +133,6 @@ int print_hexa(va_list types, char map_to[], char buffer[]
 
 	i++;
 
-	return (write(1, &buffer[i], BUFF_SIZE - i - 1));
+	/* return (write(1, &buffer[i], BUFF_SIZE - i - 1)); */
+	return (write_unsgnd(0, i, buffer, flags, width));
 }
