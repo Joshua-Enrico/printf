@@ -78,7 +78,7 @@ int write_number(int is_negative, int ind, char buffer[], int flags, int width)
  */
 int write_num(int ind, char bff[], int flgs, int w, int l, char pd, char ex_c)
 {
-	int i;
+	int i, padd_start = 1;
 
 	if (w > l)
 	{
@@ -102,9 +102,9 @@ int write_num(int ind, char bff[], int flgs, int w, int l, char pd, char ex_c)
 		else if (!(flgs & F_MINUS) && pd == '0')
 		{
 			if (ex_c)
-				bff[0] = ex_c;
-			return (write(1, &bff[0], i) +
-				write(1, &bff[ind], l - 1));
+				bff[padd_start--] = ex_c;
+			return (write(1, &bff[padd_start], i - padd_start) +
+				write(1, &bff[ind], l - (padd_start - 1)));
 		}
 	}
 	if (ex_c)

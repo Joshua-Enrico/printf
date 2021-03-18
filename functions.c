@@ -92,9 +92,7 @@ int print_percent(va_list types, char buffer[], int flags, int width)
  */
 int print_int(va_list types, char buffer[], int flags, int width)
 {
-
 	int i = BUFF_SIZE - 2;
-
 	int is_negative = 0;
 	int n = va_arg(types, int);
 	unsigned int num;
