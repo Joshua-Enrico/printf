@@ -66,3 +66,8 @@ int is_digit(char c)
 
 	return (0);
 }
+
+int _write(int out, char *str, int len)
+{
+	return write(out, str, len);
+}
