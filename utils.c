@@ -66,8 +66,3 @@ int is_digit(char c)
 
 	return (0);
 }
-
-int _wbuffer(int out, char *str, int len)
-{
-	return write(out, str, len);
-}

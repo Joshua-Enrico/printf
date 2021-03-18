@@ -27,14 +27,14 @@ int handle_write_char(char c, char buffer[], int flags, int width)
 			buffer[BUFF_SIZE - i - 2] = padd;
 
 		if (flags & F_MINUS)
-			return (_wbuffer(1, &buffer[0], 1) +
-					_wbuffer(1, &buffer[BUFF_SIZE - i - 1], width - 1));
+			return (write(1, &buffer[0], 1) +
+					write(1, &buffer[BUFF_SIZE - i - 1], width - 1));
 		else
-			return (_wbuffer(1, &buffer[BUFF_SIZE - i - 1], width - 1) +
-					_wbuffer(1, &buffer[0], 1));
+			return (write(1, &buffer[BUFF_SIZE - i - 1], width - 1) +
+					write(1, &buffer[0], 1));
 	}
 
-	return (_wbuffer(1, &buffer[0], 1));
+	return (write(1, &buffer[0], 1));
 }
 
 /************************* WRITE NUMBER *************************/
@@ -89,27 +89,27 @@ int write_num(int ind, char bff[], int flgs, int w, int l, char pd, char ex_c)
 		{
 			if (ex_c)
 				bff[--ind] = ex_c;
-			return (_wbuffer(1, &bff[ind], l) +
-					_wbuffer(1, &bff[1], i - 1));
+			return (write(1, &bff[ind], l) +
+					write(1, &bff[1], i - 1));
 		}
 		else if (!(flgs & F_MINUS) && pd == ' ')/* extra char to left of buffer */
 		{
 			if (ex_c)
 				bff[--ind] = ex_c;
-			return (_wbuffer(1, &bff[1], i - 1) +
-				_wbuffer(1, &bff[ind], l));
+			return (write(1, &bff[1], i - 1) +
+				write(1, &bff[ind], l));
 		}
 		else if (!(flgs & F_MINUS) && pd == '0')/* extra char to left of padding */
 		{
 			if (ex_c)
 				bff[--padd_start] = ex_c;
-			return (_wbuffer(1, &bff[padd_start], i - padd_start) +
-				_wbuffer(1, &bff[ind], l - (1 - padd_start)));
+			return (write(1, &bff[padd_start], i - padd_start) +
+				write(1, &bff[ind], l - (1 - padd_start)));
 		}
 	}
 	if (ex_c)
 		bff[--ind] = ex_c;
-	return (_wbuffer(1, &bff[ind], l));
+	return (write(1, &bff[ind], l));
 }
 
 int write_unsgnd(int is_negative, int ind,
@@ -133,15 +133,15 @@ char buffer[], int flags, int width)
 
 		if (flags & F_MINUS) /* Asign extra char to left of buffer [buffer>padd]*/
 		{
-			return (_wbuffer(1, &buffer[ind], length) +
-					_wbuffer(1, &buffer[0], i));
+			return (write(1, &buffer[ind], length) +
+					write(1, &buffer[0], i));
 		}
 		else /* Asign extra char to left of padding [padd>buffer]*/
 		{
-			return (_wbuffer(1, &buffer[0], i) +
-					_wbuffer(1, &buffer[ind], length));
+			return (write(1, &buffer[0], i) +
+					write(1, &buffer[ind], length));
 		}
 	}
 
-	return (_wbuffer(1, &buffer[ind], length));
+	return (write(1, &buffer[ind], length));
 }

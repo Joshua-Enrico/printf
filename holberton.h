@@ -87,6 +87,5 @@ int len(char *);
 int is_printable(char);
 int append_hexa_code(char, char[], int);
 int is_digit(char);
-int _wbuffer(int out, char *str, int len);
 
 #endif /* HOL_H */
