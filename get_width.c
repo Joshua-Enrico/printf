@@ -6,7 +6,7 @@
  * @i: List of arguments to be printed
  * Return: width.
  */
-int get_width(const char *format, int *i)
+int get_width(const char *format, int *i, va_list list)
 {
 	int curr_i;
 	int width = 0;
@@ -18,10 +18,10 @@ int get_width(const char *format, int *i)
 			width *= 10;
 			width += format[curr_i] - '0';
 		}
+		else if (format[curr_i] == '*')
+			width = va_arg(list, int);
 		else
-		{
 			break;
-		}
 	}
 
 	*i = curr_i - 1;
