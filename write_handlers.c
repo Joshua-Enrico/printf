@@ -19,6 +19,7 @@ int handle_write_char(char c, char buffer[],
 	char padd = ' ';
 
 	UNUSED(precision);
+	UNUSED(size);
 
 	if (flags & F_ZERO)
 		padd = '0';
@@ -61,6 +62,8 @@ int write_number(int is_negative, int ind, char buffer[],
 {
 	int length = BUFF_SIZE - ind - 1;
 	char padd = ' ', extra_ch = 0;
+
+	UNUSED(size);
 
 	if ((flags & F_ZERO) && !(flags & F_MINUS))
 		padd = '0';
@@ -141,6 +144,7 @@ char buffer[],
 	char padd = ' ';
 
 	UNUSED(is_negative);
+	UNUSED(size);
 
 	if (precision == 0 && ind == BUFF_SIZE - 2 && buffer[ind] == '0')
 		return (0); /* printf(".0d", 0)  no char is printed */

@@ -20,6 +20,7 @@ int print_pointer(va_list types, char buffer[],
 	void *addrs = va_arg(types, void *);
 
 	UNUSED(width);
+	UNUSED(size);
 
 	if (addrs == NULL)
 		return (write(1, "(nil)", 5));
@@ -68,6 +69,7 @@ int print_non_printable(va_list types, char buffer[],
 	UNUSED(flags);
 	UNUSED(width);
 	UNUSED(precision);
+	UNUSED(size);
 
 	if (str == NULL)
 		return (write(1, "(null)", 6));
@@ -108,6 +110,7 @@ int print_reverse(va_list types, char buffer[],
 	UNUSED(buffer);
 	UNUSED(flags);
 	UNUSED(width);
+	UNUSED(size);
 
 	str = va_arg(types, char *);
 
@@ -155,6 +158,7 @@ int print_rot13string(va_list types, char buffer[],
 	UNUSED(flags);
 	UNUSED(width);
 	UNUSED(precision);
+	UNUSED(size);
 
 	if (str == NULL)
 		str = "(AHYY)";
