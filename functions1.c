@@ -56,6 +56,8 @@ int print_octal(va_list types, char buffer[],
 
 	UNUSED(width);
 
+	num = convert_size_unsgnd(num, size);
+
 	if (num == 0)
 		buffer[i--] = '0';
 
@@ -133,6 +135,8 @@ int print_hexa(va_list types, char map_to[], char buffer[],
 	unsigned long int init_num = num;
 
 	UNUSED(width);
+
+	num = convert_size_unsgnd(num, size);
 
 	if (num == 0)
 		buffer[i--] = '0';
