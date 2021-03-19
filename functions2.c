@@ -7,9 +7,11 @@
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width
+ * @precision: Precision specification
  * Return: Number of chars printed
  */
-int print_pointer(va_list types, char buffer[], int flags, int width)
+int print_pointer(va_list types, char buffer[],
+	int flags, int width, int precision)
 {
 
 	int i = BUFF_SIZE - 2;
@@ -51,9 +53,11 @@ int print_pointer(va_list types, char buffer[], int flags, int width)
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width
+ * @precision: Precision specification
  * Return: Number of chars printed
  */
-int print_non_printable(va_list types, char buffer[], int flags, int width)
+int print_non_printable(va_list types, char buffer[],
+	int flags, int width, int precision)
 {
 
 	int i = 0, offset = 0;
@@ -87,10 +91,12 @@ int print_non_printable(va_list types, char buffer[], int flags, int width)
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width
+ * @precision: Precision specification
  * Return: Numbers of chars printed
  */
 
-int print_reverse(va_list types, char buffer[], int flags, int width)
+int print_reverse(va_list types, char buffer[],
+	int flags, int width, int precision)
 {
 
 	char *str;
@@ -125,9 +131,11 @@ int print_reverse(va_list types, char buffer[], int flags, int width)
  * @buffer: Buffer array to handle print
  * @flags:  Calculates active flags
  * @width: get width
+ * @precision: Precision specification
  * Return: Numbers of chars printed
  */
-int print_rot13string(va_list types, char buffer[], int flags, int width)
+int print_rot13string(va_list types, char buffer[],
+	int flags, int width, int precision)
 {
 
 	char x;

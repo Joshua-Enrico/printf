@@ -9,7 +9,8 @@
  * @width: get width.
  * Return: Number of chars printed
  */
-int handle_write_char(char c, char buffer[], int flags, int width)
+int handle_write_char(char c, char buffer[],
+	int flags, int width, int precision)
 { /* char is stored at left and paddind at buffer's right */
 	int i = 0;
 	char padd = ' ';
@@ -47,7 +48,8 @@ int handle_write_char(char c, char buffer[], int flags, int width)
  * @width: get width.
  * Return: Number of chars printed
  */
-int write_number(int is_negative, int ind, char buffer[], int flags, int width)
+int write_number(int is_negative, int ind, char buffer[],
+	int flags, int width, int precision)
 {
 	int length = BUFF_SIZE - ind - 1;
 	char padd = ' ', extra_ch = 0;
@@ -113,7 +115,8 @@ int write_num(int ind, char bff[], int flgs, int w, int l, char pd, char ex_c)
 }
 
 int write_unsgnd(int is_negative, int ind,
-char buffer[], int flags, int width)
+char buffer[],
+	int flags, int width, int precision)
 {
 	/* The number is stored at the bufer's right and starts at position i */
 	int length = BUFF_SIZE - ind - 1, i = 0;
