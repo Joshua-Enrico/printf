@@ -40,10 +40,17 @@ int print_string(va_list types, char buffer[],
 	UNUSED(precision);
 
 	if (str == NULL)
+	{
 		str = "(null)";
+		if (precision >= 6)
+			str = "      ";
+	}
 
 	while (str[length] != '\0')
 		length++;
+	
+	if (precision >= 0 && precision < length)
+		length = precision;
 
 	if (width > length)
 	{
@@ -64,10 +71,7 @@ int print_string(va_list types, char buffer[],
 	}
 
 	return (write(1, str, length));
-
-	/* HANDLE SPECIAL CASES WHEN PRINTING STR*/
-	/* Pending ...... */
-	}
+}
 /************************* PRINT PERCENT SIGN *************************/
 /**
  * print_percent - Prints a percent sign
