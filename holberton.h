@@ -105,7 +105,6 @@ char buffer[],
 	int flags, int width, int precision, int size);
 
 /****************** UTILS ******************/
-int len(char *);
 int is_printable(char);
 int append_hexa_code(char, char[], int);
 int is_digit(char);
